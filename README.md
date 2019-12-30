@@ -1,5 +1,5 @@
 # CustomerDataService
-Sample Java Microservice to manage the User Accounts it is based on SpringBoot
+Sample Java Microservice to manage the Bank's Customers' Data it is based on SpringBoot
 
 # This is maven project to build it use:
 
