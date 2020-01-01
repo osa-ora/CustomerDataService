@@ -9,17 +9,15 @@ CREATE TABLE `customers`.`customer` (
   `birthday` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
 
-INSERT INTO `customers`.`customer` (`id`, `firstName`, `lastName`, `email`, `city`, `birthday`) VALUES ('1', 'Osama', 'Oransa', 'osa.ora@acme.com', 'Cairo','No', '2000-01-09');
-INSERT INTO `customers`.`customer` (`id`, `firstName`, `lastName`, `email`, `city`, `birthday`) VALUES ('2', 'Sameh', 'Ahmed', 'sa.or@acme.com', 'Dubai','Yes', '2001-02-20');
+INSERT INTO `customers`.`customer` (`id`, `firstName`, `lastName`, `email`, `city`,`state`, `birthday`) VALUES ('1', 'Osama', 'Oransa', 'osa.ora@acme.com', 'Cairo','No', '2000-01-09');
+INSERT INTO `customers`.`customer` (`id`, `firstName`, `lastName`, `email`, `city`,`state`, `birthday`) VALUES ('2', 'Sameh', 'Ahmed', 'sa.or@acme.com', 'Dubai','Yes', '2001-02-20');
 commit;
 
 CREATE TABLE `customers`.`customer_accounts` (
   `customer_id` INT NOT NULL,
   `account_no` VARCHAR(45) NOT NULL,
+  `type` VARCHAR(45) NULL,
   PRIMARY KEY (`customer_id`, `account_no`));
-
-ALTER TABLE `customers`.`customer_accounts` 
-ADD COLUMN `type` VARCHAR(45) NULL AFTER `account_no`;
 
 INSERT INTO `customers`.`customer_accounts` (`customer_id`, `account_no`, `type`) VALUES ('1', '123456-1', '100');
 INSERT INTO `customers`.`customer_accounts` (`customer_id`, `account_no`, `type`) VALUES ('1', '123456-2', '101');

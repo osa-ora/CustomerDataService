@@ -21,8 +21,8 @@ public class CustomerAccountsPersistence {
 		return conn;
 	}
 	public JsonMessage save(Accounts account) {
-		String insertTableSQL = "INSERT INTO CUSTOMER_ACCOUNT "
-				+ "(CUSTOMER_ID, ACCOUNT_NO, TYPE) "
+		String insertTableSQL = "INSERT INTO customer_account "
+				+ "(customer_id, account_no, type) "
 				+ "VALUES(?,?,?)";
 
 		try (PreparedStatement preparedStatement = getConnection()
@@ -43,7 +43,7 @@ public class CustomerAccountsPersistence {
 	}
 
 	public JsonMessage delete(long id, String account_no) {
-		String deleteRowSQL = "DELETE FROM CUSTOMER_ACCOUNT WHERE CUSTOMER_ID=? and ACCOUNT_NO=?";
+		String deleteRowSQL = "DELETE FROM customer_account WHERE customer_id=? and account_no=?";
 		try (PreparedStatement preparedStatement = getConnection()
 				.prepareStatement(deleteRowSQL)) {
 			preparedStatement.setLong(1, id);
@@ -61,12 +61,12 @@ public class CustomerAccountsPersistence {
 	}
 
 	public Accounts[] findAll() {
-		String queryStr = "SELECT * FROM CUSTOMER_ACCOUNTS";
+		String queryStr = "SELECT * FROM customer_account";
 		return this.query(queryStr);
 	}
 
 	public Accounts[] findbyId(long id) {
-		String queryStr = "SELECT * FROM CUSTOMER_ACCOUNTS WHERE CUSTOMER_ID=" + id;
+		String queryStr = "SELECT * FROM customer_account WHERE customer_id=" + id;
 		Accounts accounts[] = this.query(queryStr);
 		return accounts;
 	}

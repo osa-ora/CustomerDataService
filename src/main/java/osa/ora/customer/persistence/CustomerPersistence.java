@@ -22,7 +22,7 @@ public class CustomerPersistence {
 	}
 
     public JsonMessage save(Customer customer) {
-        String insertTableSQL = "INSERT INTO CUSTOMER "
+        String insertTableSQL = "INSERT INTO customer "
                 + "(FIRSTNAME, LASTNAME, EMAIL, CITY, STATE, BIRTHDAY) "
                 + "VALUES(?,?,?,?,?,?)";
         //+ "VALUES(CUSTOMER_SEQ.NEXTVAL,?,?,?,?,?,?)";
@@ -48,7 +48,7 @@ public class CustomerPersistence {
     }
 
     public JsonMessage update(Customer customer) {
-        String updateTableSQL = "UPDATE CUSTOMER SET FIRSTNAME= ?, LASTNAME= ?,   EMAIL=?,  CITY=?, STATE=?, BIRTHDAY=?  WHERE ID=?";
+        String updateTableSQL = "UPDATE customer SET FIRSTNAME= ?, LASTNAME= ?,   EMAIL=?,  CITY=?, STATE=?, BIRTHDAY=?  WHERE ID=?";
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(updateTableSQL);) {
             preparedStatement.setString(1, customer.getFirstName());
@@ -73,7 +73,7 @@ public class CustomerPersistence {
     }
 
     public JsonMessage delete(long id) {
-        String deleteRowSQL = "DELETE FROM CUSTOMER WHERE ID=?";
+        String deleteRowSQL = "DELETE FROM customer WHERE id=?";
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(deleteRowSQL)) {
             preparedStatement.setLong(1, id);
@@ -90,12 +90,12 @@ public class CustomerPersistence {
     }
 
     public Customer[] findAll() {
-        String queryStr = "SELECT * FROM CUSTOMER";
+        String queryStr = "SELECT * FROM customer";
         return this.query(queryStr);
     }
 
     public Customer findbyId(long id) {
-        String queryStr = "SELECT * FROM CUSTOMER WHERE ID=" + id;
+        String queryStr = "SELECT * FROM customer WHERE id=" + id;
         Customer customer = null;
         Customer customers[] = this.query(queryStr);
         if (customers != null && customers.length > 0) {
@@ -105,7 +105,7 @@ public class CustomerPersistence {
     }
 
     public Customer findbyEmail(String email) {
-        String queryStr = "SELECT * FROM CUSTOMER WHERE EMAIL='" + email+"'";
+        String queryStr = "SELECT * FROM customer WHERE email='" + email+"'";
         Customer customer = null;
         Customer customers[] = this.query(queryStr);
         if (customers != null && customers.length > 0) {
