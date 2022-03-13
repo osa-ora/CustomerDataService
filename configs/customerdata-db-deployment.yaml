@@ -29,6 +29,9 @@ spec:
   selector:
     name: customer-data-db
   template:
+    metadata:
+      labels:
+        name: customer-data-db
     spec:
       volumes:
         - name: customerdb-data
