@@ -1,0 +1,26 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: customerdata-service
+  namespace: dev
+  labels:
+    app.kubernetes.io/part-of: customer-data
+    application: customer-data
+spec:
+  template:
+    spec:
+      containers:
+        - image: image-registry.openshift-image-registry.svc:5000/dev/customerdata-service
+          env:
+            - name: DBAAS_DEFAULT_CONNECT_DESCRIPTOR
+              value: 'customer-data-db:3306/customers'
+            - name: DBAAS_USER_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: customer-data-db
+                  key: database-user
+            - name: DBAAS_USER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: customer-data-db
+                  key: database-password
