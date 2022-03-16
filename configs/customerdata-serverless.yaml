@@ -6,6 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/part-of: customer-data
     application: customer-data
+    serving.knative.dev/visibility: cluster-local
 spec:
   template:
     spec:
